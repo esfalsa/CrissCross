@@ -1,0 +1,29 @@
+name: Feature request
+description: Suggest a new feature for CrissCross
+body:
+  - type: textarea
+    id: reasons
+    attributes:
+      label: Describe the problem
+      description: What problem(s) would this feature solve?
+      placeholder: It's frustrating when...
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Ideal solution
+      description: What would be your preferred solution?
+      placeholder: It would be nice if...
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative solutions
+      description: Are there any alternative solutions or features you've considered?
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: Additional information
+      description: Is there anything else you would like to tell us?

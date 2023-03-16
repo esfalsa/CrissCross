@@ -1,0 +1,32 @@
+name: Bug report
+description: Report an issue with CrissCross
+body:
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Describe the bug
+      description: Please describe the bug in as much detail as you can, and provide the steps needed to reproduce the bug if possible.
+      placeholder: Bug description
+    validations:
+      required: true
+  - type: input
+    id: browser-info
+    attributes:
+      label: Browser
+      description: Which browser are you using?
+      placeholder: Firefox 110.0
+    validations:
+      required: true
+  - type: input
+    id: os-info
+    attributes:
+      label: Operating system
+      description: Which operating system are you using?
+      placeholder: macOS 13.0
+    validations:
+      required: true
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: Additional information
+      description: Is there anything else you would like to tell us?
