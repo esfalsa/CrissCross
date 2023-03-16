@@ -55,24 +55,27 @@ function UserNationSection() {
         </p>
 
         <div>
-          <div className="mb-1 flex items-center">
-            <h3 className="font-semibold tracking-tight">
+          <div className="mb-1 flex items-center space-x-2">
+            <h3
+              className="overflow-hidden text-ellipsis whitespace-nowrap font-semibold tracking-tight"
+              title={`Nations Endorsing ${prettify(pointNation)}`}
+            >
               Nations Endorsing {prettify(pointNation)}
             </h3>
-            <div className="ml-auto space-x-2 text-sm">
-              <button
-                className="ml-auto h-fit text-sm text-blue-500"
-                onClick={() => setNations(originalNations)}
-              >
-                Reset
-              </button>
-              <button
-                className="h-fit text-sm text-blue-500"
-                onClick={() => location.reload()}
-              >
-                Refresh
-              </button>
-            </div>
+            {/* <div className="flex-shrink-0 space-x-2 text-sm"> */}
+            <button
+              className="h-fit text-sm text-blue-500"
+              onClick={() => setNations(originalNations)}
+            >
+              Reset
+            </button>
+            <button
+              className="h-fit text-sm text-blue-500"
+              onClick={() => location.reload()}
+            >
+              Refresh
+            </button>
+            {/* </div> */}
           </div>
           <div className="rounded border border-slate-300 bg-white px-4 py-2 shadow-sm">
             <div className="h-56 overflow-y-scroll">
@@ -82,6 +85,7 @@ function UserNationSection() {
                   <button
                     key={nation}
                     className="group flex w-full flex-row rounded border p-2"
+                    title={prettify(nation)}
                     onClick={() => {
                       window.open(
                         `https://www.nationstates.net/nation=${canonicalize(
@@ -93,7 +97,9 @@ function UserNationSection() {
                       setNations(nations.filter((each) => each !== nation));
                     }}
                   >
-                    <span>{prettify(nation)}</span>
+                    <span className="overflow-hidden text-ellipsis whitespace-nowrap">
+                      {prettify(nation)}
+                    </span>
                     <span className="duration-250 ml-auto opacity-0 transition ease-in-out group-hover:opacity-100 group-focus:opacity-100">
                       →
                     </span>
