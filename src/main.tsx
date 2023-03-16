@@ -27,12 +27,14 @@ const router = createHashRouter([
       endpoint.search = new URLSearchParams({
         nation: canonicalize(params.pointNation),
         q: "endorsements",
-        "User-Agent": "Crossing Tool/0.1.0 (by: Esfalsa)",
+        "User-Agent":
+          "CrissCross/0.1.0 (by: Esfalsa, github.com/esfalsa/crisscross)",
       }).toString();
 
       const response = await fetch(endpoint, {
         headers: {
-          "User-Agent": "Crossing Tool/0.1.0 (by: Esfalsa)",
+          "User-Agent":
+            "CrissCross/0.1.0 (by: Esfalsa, github.com/esfalsa/crisscross)",
         },
       }).then((res) => res.text());
 
