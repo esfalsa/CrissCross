@@ -53,44 +53,29 @@ function UserNationSection() {
           <span className="font-bold">{prettify(pointNation)}</span> as{" "}
           <span className="font-bold">{prettify(userNation)}</span>.
         </p>
+
         <div>
-          {nations[0] ? (
-            <button
-              className="block w-full rounded bg-blue-500 px-4 py-2 text-white shadow transition ease-in-out focus:border-blue-300 focus:ring-4 focus:ring-blue-200 focus-visible:outline-none"
-              onClick={() => {
-                window.open(
-                  `https://www.nationstates.net/nation=${nations[0]}#composebutton`,
-                  "_blank",
-                  "noreferrer"
-                );
-                setNations(nations.slice(1));
-              }}
-            >
-              Open next
-            </button>
-          ) : (
-            <button
-              className="block w-full rounded bg-slate-200 px-4 py-2 text-slate-500 shadow transition ease-in-out focus:border-blue-300 focus:ring-4 focus:ring-blue-200 focus-visible:outline-none"
-              disabled
-              onClick={() => {
-                window.open(
-                  `https://www.nationstates.net/nation=${nations[0]}#composebutton`,
-                  "_blank",
-                  "noreferrer"
-                );
-                setNations(nations.slice(1));
-              }}
-            >
-              All links opened!
-            </button>
-          )}
-        </div>
-        <div>
-          <h3 className="mb-1 font-semibold tracking-tight">
-            All Nations to Endorse
-          </h3>
+          <div className="mb-1 flex items-center">
+            <h3 className="font-semibold tracking-tight">
+              Nations Endorsing {prettify(pointNation)}
+            </h3>
+            <div className="ml-auto space-x-2 text-sm">
+              <button
+                className="ml-auto h-fit text-sm text-blue-500"
+                onClick={() => setNations(originalNations)}
+              >
+                Reset
+              </button>
+              <button
+                className="h-fit text-sm text-blue-500"
+                onClick={() => location.reload()}
+              >
+                Refresh
+              </button>
+            </div>
+          </div>
           <div className="rounded border border-slate-300 bg-white px-4 py-2 shadow-sm">
-            <div className="h-60 overflow-y-scroll">
+            <div className="h-56 overflow-y-scroll">
               <div className="sticky top-0 z-10 h-2.5 w-full bg-gradient-to-t from-transparent to-white" />
               <div className="space-y-2">
                 {nations.map((nation) => (
@@ -109,7 +94,7 @@ function UserNationSection() {
                     }}
                   >
                     <span>{prettify(nation)}</span>
-                    <span className="duration-250 ml-auto opacity-0 transition ease-in-out group-hover:opacity-100">
+                    <span className="duration-250 ml-auto opacity-0 transition ease-in-out group-hover:opacity-100 group-focus:opacity-100">
                       →
                     </span>
                   </button>
@@ -119,6 +104,38 @@ function UserNationSection() {
             </div>
           </div>
         </div>
+      </div>
+      <div className="bg-white/75 p-4">
+        {nations[0] ? (
+          <button
+            className="block w-full rounded bg-blue-500 px-4 py-2 text-white shadow transition ease-in-out focus:border-blue-300 focus:ring-4 focus:ring-blue-200 focus-visible:outline-none"
+            onClick={() => {
+              window.open(
+                `https://www.nationstates.net/nation=${nations[0]}#composebutton`,
+                "_blank",
+                "noreferrer"
+              );
+              setNations(nations.slice(1));
+            }}
+          >
+            Open next
+          </button>
+        ) : (
+          <button
+            className="block w-full rounded bg-slate-200 px-4 py-2 text-slate-500 shadow transition ease-in-out focus:border-blue-300 focus:ring-4 focus:ring-blue-200 focus-visible:outline-none"
+            disabled
+            onClick={() => {
+              window.open(
+                `https://www.nationstates.net/nation=${nations[0]}#composebutton`,
+                "_blank",
+                "noreferrer"
+              );
+              setNations(nations.slice(1));
+            }}
+          >
+            All links opened!
+          </button>
+        )}
       </div>
     </Layout>
   );
