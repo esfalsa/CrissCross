@@ -5,4 +5,9 @@ import react from "@vitejs/plugin-react-swc";
 export default defineConfig({
   plugins: [react()],
   base: "/libcord-crossing",
+  resolve: {
+    alias: {
+      "@/": new URL("./src/", import.meta.url).pathname,
+    },
+  },
 });
