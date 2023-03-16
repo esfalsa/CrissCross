@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Layout from "@/components/Layout";
+import { canonicalize } from "@/utils/nation-names";
 
 interface FormInputs {
   pointNation: string;
@@ -19,7 +20,7 @@ function PointNationSection() {
     <Layout>
       <form
         onSubmit={handleSubmit(({ pointNation }) =>
-          navigate(`/cross/${pointNation}`)
+          navigate(`/cross/${canonicalize(pointNation)}`)
         )}
       >
         <div className="p-4">

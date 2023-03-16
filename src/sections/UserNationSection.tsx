@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import { useParams, useNavigate } from "react-router-dom";
 import Layout from "@/components/Layout";
+import URLParamsErrorPage from "@/components/URLParamsErrorPage";
+import { prettify, canonicalize } from "@/utils/nation-names";
 
 interface FormInputs {
   userNation: string;
@@ -13,19 +15,25 @@ function UserNationSection() {
     formState: { errors },
   } = useForm<FormInputs>();
   const navigate = useNavigate();
-  const params = useParams();
+  const { pointNation } = useParams();
+
+  if (!pointNation) {
+    return <URLParamsErrorPage />;
+  }
 
   return (
     <Layout>
       <form
         onSubmit={handleSubmit(({ userNation }) =>
-          navigate(`/cross/${params.pointNation}/as/${userNation}`)
+          navigate(
+            `/cross/${canonicalize(pointNation)}/as/${canonicalize(userNation)}`
+          )
         )}
       >
         <div className="space-y-4 p-4">
           <p className="rounded border border-green-400 bg-green-50 p-2 text-sm text-emerald-800 shadow-sm">
             Preparing to endorse{" "}
-            <span className="font-bold">{params.pointNation}</span> and all
+            <span className="font-bold">{prettify(pointNation)}</span> and all
             nations endorsing it.
           </p>
           <p>

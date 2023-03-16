@@ -5,6 +5,7 @@ import PointNationSection from "@/sections/PointNationSection";
 import UserNationSection from "@/sections/UserNationSection";
 import CrossEndorseSection from "@/sections/CrossEndorseSection";
 import "@/index.css";
+import { canonicalize } from "@/utils/nation-names";
 
 const router = createHashRouter([
   {
@@ -24,7 +25,7 @@ const router = createHashRouter([
 
       const endpoint = new URL("https://www.nationstates.net/cgi-bin/api.cgi");
       endpoint.search = new URLSearchParams({
-        nation: params.pointNation,
+        nation: canonicalize(params.pointNation),
         q: "endorsements",
         "User-Agent": "Crossing Tool/0.1.0 (by: Esfalsa)",
       }).toString();
