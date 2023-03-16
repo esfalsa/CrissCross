@@ -37,6 +37,7 @@ function PointNationSection() {
                 {...register("pointNation", {
                   required: true,
                 })}
+                autoFocus
               />
               {errors.pointNation?.type === "required" && (
                 <span className="text-sm text-red-500">

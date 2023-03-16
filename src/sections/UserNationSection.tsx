@@ -42,6 +42,7 @@ function UserNationSection() {
                 {...register("userNation", {
                   required: true,
                 })}
+                autoFocus
               />
               {errors.userNation?.type === "required" && (
                 <span className="text-sm text-red-500">

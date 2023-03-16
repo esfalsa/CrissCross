@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createHashRouter, RouterProvider } from "react-router-dom";
-import PointNationSection from "./sections/PointNationSection";
-import UserNationSection from "./sections/UserNationSection";
-import "./index.css";
+import PointNationSection from "@/sections/PointNationSection";
+import UserNationSection from "@/sections/UserNationSection";
+import CrossEndorseSection from "@/sections/CrossEndorseSection";
+import "@/index.css";
 
 const router = createHashRouter([
   {
@@ -13,6 +14,10 @@ const router = createHashRouter([
   {
     path: "/cross/:pointNation",
     element: <UserNationSection />,
+  },
+  {
+    path: "/cross/:pointNation/as/:userNation",
+    element: <CrossEndorseSection />,
   },
 ]);
 
