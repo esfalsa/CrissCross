@@ -17,6 +17,35 @@ const router = createHashRouter([
   },
   {
     path: "/cross/:pointNation/as/:userNation",
+    loader: async ({ params }) => {
+      // TODO: proper error handling (API error response, no endorsements on point, etc.)
+
+      if (!params.pointNation) return null;
+
+      const endpoint = new URL("https://www.nationstates.net/cgi-bin/api.cgi");
+      endpoint.search = new URLSearchParams({
+        nation: params.pointNation,
+        q: "endorsements",
+        "User-Agent": "Crossing Tool/0.1.0 (by: Esfalsa)",
+      }).toString();
+
+      const response = await fetch(endpoint, {
+        headers: {
+          "User-Agent": "Crossing Tool/0.1.0 (by: Esfalsa)",
+        },
+      }).then((res) => res.text());
+
+      const endorsers = new DOMParser()
+        .parseFromString(response, "text/xml")
+        .querySelector("ENDORSEMENTS")
+        ?.textContent?.split(",");
+
+      if (!endorsers) return null;
+
+      return endorsers
+        .filter((endorser) => endorser && endorser !== params.userNation)
+        .reverse();
+    },
     element: <CrossEndorseSection />,
   },
 ]);
