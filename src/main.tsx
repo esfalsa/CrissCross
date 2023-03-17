@@ -45,9 +45,12 @@ const router = createHashRouter([
 
       if (!endorsers) return null;
 
-      return endorsers
-        .filter((endorser) => endorser && endorser !== params.userNation)
-        .reverse();
+      return [
+        params.pointNation,
+        ...endorsers
+          .filter((endorser) => endorser && endorser !== params.userNation)
+          .reverse(),
+      ];
     },
     element: <CrossEndorseSection />,
   },

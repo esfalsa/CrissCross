@@ -55,22 +55,21 @@ function UserNationSection() {
         </p>
 
         <div>
-          <div className="mb-1 flex items-center space-x-2">
+          <div className="mb-1 flex items-center">
             <h3
               className="overflow-hidden text-ellipsis whitespace-nowrap font-semibold tracking-tight"
               title={`Nations Endorsing ${prettify(pointNation)}`}
             >
-              Nations Endorsing {prettify(pointNation)}
+              Cross-Endorsing {prettify(pointNation)}
             </h3>
-            {/* <div className="flex-shrink-0 space-x-2 text-sm"> */}
             <button
-              className="h-fit text-sm text-blue-500"
+              className="ml-auto h-fit text-sm text-blue-500"
               onClick={() => setNations(originalNations)}
             >
               Reset
             </button>
             <button
-              className="h-fit text-sm text-blue-500"
+              className="ml-2 h-fit text-sm text-blue-500"
               onClick={() => location.reload()}
             >
               Refresh
