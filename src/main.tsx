@@ -21,7 +21,7 @@ const router = createHashRouter([
     loader: async ({ params }) => {
       // TODO: proper error handling (API error response, no endorsements on point, etc.)
 
-      if (!params.pointNation) return null;
+      if (!params.pointNation || !params.userNation) return null;
 
       const endpoint = new URL("https://www.nationstates.net/cgi-bin/api.cgi");
       endpoint.search = new URLSearchParams({
@@ -45,12 +45,13 @@ const router = createHashRouter([
 
       if (!endorsers) return null;
 
-      return [
-        params.pointNation,
-        ...endorsers
+      if (endorsers.includes(params.userNation)) {
+        return endorsers
           .filter((endorser) => endorser && endorser !== params.userNation)
-          .reverse(),
-      ];
+          .reverse();
+      } else {
+        return [params.pointNation, ...endorsers.reverse()];
+      }
     },
     element: <CrossEndorseSection />,
   },
