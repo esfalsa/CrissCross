@@ -46,11 +46,9 @@ const router = createHashRouter([
       if (!endorsers) return null;
 
       if (endorsers.includes(params.userNation)) {
-        return [
-          endorsers
-            .filter((endorser) => endorser && endorser !== params.userNation)
-            .reverse(),
-        ];
+        return endorsers
+          .filter((endorser) => endorser && endorser !== params.userNation)
+          .reverse();
       } else {
         return [params.pointNation, ...endorsers.reverse()];
       }
