@@ -31,6 +31,8 @@ const router = createHashRouter([
           "CrissCross/0.1.0 (by: Esfalsa, github.com/esfalsa/crisscross)",
       }).toString();
 
+      await new Promise((r) => setTimeout(r, 600));
+
       const response = await fetch(endpoint, {
         headers: {
           "User-Agent":
