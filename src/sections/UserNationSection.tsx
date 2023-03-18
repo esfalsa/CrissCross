@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useNavigation } from "react-router-dom";
 import Layout from "@/components/Layout";
 import URLParamsErrorPage from "@/components/URLParamsErrorPage";
 import { prettify, canonicalize } from "@/utils/nation-names";
@@ -12,7 +12,7 @@ function UserNationSection() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting, isSubmitted },
   } = useForm<FormInputs>();
   const navigate = useNavigate();
   const { pointNation } = useParams();
@@ -54,7 +54,7 @@ function UserNationSection() {
               />
               {errors.userNation?.type === "required" && (
                 <span className="text-sm text-red-500">
-                  Please enter the nation you want to cross-endorse.
+                  Please enter your nation.
                 </span>
               )}
             </label>
@@ -62,12 +62,22 @@ function UserNationSection() {
         </div>
 
         <div className="bg-white/75 p-4">
-          <button
-            className="block w-full rounded bg-blue-500 px-4 py-2 text-white shadow transition ease-in-out focus:border-blue-300 focus:ring-4 focus:ring-blue-200 focus-visible:outline-none"
-            type="submit"
-          >
-            Next
-          </button>
+          {!isSubmitting && !isSubmitted ? (
+            <button
+              className="block w-full rounded bg-blue-500 px-4 py-2 text-white shadow transition ease-in-out focus:border-blue-300 focus:ring-4 focus:ring-blue-200 focus-visible:outline-none"
+              type="submit"
+            >
+              Next
+            </button>
+          ) : (
+            <button
+              className="block w-full rounded bg-slate-300 px-4 py-2 text-slate-500 shadow transition ease-in-out focus:border-slate-300 focus:ring-4 focus:ring-slate-200 focus-visible:outline-none"
+              type="submit"
+              disabled
+            >
+              Loading…
+            </button>
+          )}
         </div>
       </form>
     </Layout>

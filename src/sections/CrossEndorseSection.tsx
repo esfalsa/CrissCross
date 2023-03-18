@@ -1,4 +1,4 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useNavigation, useParams } from "react-router-dom";
 import Layout from "@/components/Layout";
 import ErrorMessage from "@/components/ErrorMessage";
 import URLParamsErrorPage from "@/components/URLParamsErrorPage";
@@ -40,6 +40,9 @@ function UserNationSection() {
   }
 
   const [nations, setNations] = useState(originalNations);
+  const navigation = useNavigation();
+
+  console.log(navigation);
 
   useEffect(() => {
     setNations(originalNations);
@@ -74,7 +77,6 @@ function UserNationSection() {
             >
               Refresh
             </button>
-            {/* </div> */}
           </div>
           <div className="rounded border border-slate-300 bg-white px-4 py-2 shadow-sm">
             <div className="h-56 overflow-y-scroll">
