@@ -4,6 +4,7 @@ import { createHashRouter, RouterProvider } from "react-router-dom";
 import PointNationSection from "@/sections/PointNationSection";
 import UserNationSection from "@/sections/UserNationSection";
 import CrossEndorseSection from "@/sections/CrossEndorseSection";
+import LoadingFallback from "@/sections/LoadingFallback";
 import "@/index.css";
 import { canonicalize } from "@/utils/nation-names";
 
@@ -30,6 +31,8 @@ const router = createHashRouter([
         "User-Agent":
           "CrissCross/0.1.0 (by: Esfalsa, github.com/esfalsa/crisscross)",
       }).toString();
+
+      await new Promise((r) => setTimeout(r, 600));
 
       const response = await fetch(endpoint, {
         headers: {
@@ -59,6 +62,6 @@ const router = createHashRouter([
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} fallbackElement />
+    <RouterProvider router={router} fallbackElement={<LoadingFallback />} />
   </React.StrictMode>
 );
