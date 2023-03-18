@@ -40,9 +40,6 @@ function UserNationSection() {
   }
 
   const [nations, setNations] = useState(originalNations);
-  const navigation = useNavigation();
-
-  console.log(navigation);
 
   useEffect(() => {
     setNations(originalNations);
