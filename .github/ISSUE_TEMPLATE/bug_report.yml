@@ -1,5 +1,7 @@
 name: Bug report
 description: Report an issue with CrissCross
+labels:
+  - bug
 body:
   - type: textarea
     id: bug-description
