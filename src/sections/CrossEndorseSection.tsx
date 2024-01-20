@@ -1,4 +1,4 @@
-import { useLoaderData, useNavigation, useParams } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import Layout from "@/components/Layout";
 import ErrorMessage from "@/components/ErrorMessage";
 import URLParamsErrorPage from "@/components/URLParamsErrorPage";
